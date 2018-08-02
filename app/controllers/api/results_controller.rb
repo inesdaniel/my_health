@@ -1,6 +1,23 @@
 class Api::ResultsController < ApplicationController
   def index
-    @results = Shot.all 
+    @shots = Shot.all
+    @exams = Exam.all
+    @vitals = Vital.all 
+
+
     render "index.json.jbuilder"
   end
+
+  def show
+    result_id = params[:id]
+
+    @result = Shot.find(result_id)
+    
+    render "show.json.jbuilder" 
+  end
+  
+  def create
+    
+  end
+
 end
