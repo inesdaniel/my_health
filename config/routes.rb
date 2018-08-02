@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     patch "/results/:id" => "results#update"
     delete "/results/:id" => "results#destroy"
 
-    get "/users" => "users#create"
-
+    post "/users" => "users#create"
+    post "/sessions" => "sessions#create"
 
   end
 end
