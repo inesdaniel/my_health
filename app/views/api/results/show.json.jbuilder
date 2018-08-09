@@ -1,2 +1,2 @@
 json.name @result.name
-json.date_given @result.date_given
+json.date_completed @result.date_completed

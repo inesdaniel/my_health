@@ -1,6 +1,6 @@
 json.array! @shots.each do |shot|
   json.name shot.name
-  json.date_given shot.date_given
+  json.date_completed shot.date_completed
   json.user_id shot.user_id
  
 end
@@ -14,5 +14,6 @@ end
 json.array! @vitals.each do |vital|
   json.name vital.name
   json.reading vital.reading
+  json.date_completed vital.date_completed
   json.user_id vital.user_id
 end
