@@ -3,6 +3,7 @@ class Api::ResultsController < ApplicationController
     @shots = Shot.all
     @exams = Exam.all
     @vitals = Vital.all 
+    @lab_tests = LabTest.all 
 
 
     render "index.json.jbuilder"

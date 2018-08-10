@@ -17,3 +17,9 @@ json.array! @vitals.each do |vital|
   json.date_completed vital.date_completed
   json.user_id vital.user_id
 end
+
+json.array! @lab_tests.each do |lab_test|
+  json.name lab_test.name
+  
+  json.user_id lab_test.user_id
+end

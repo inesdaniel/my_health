@@ -1,3 +1,4 @@
 class Vital < ApplicationRecord
-  belongs_to :user
+  has_many :user_vitals
+  has_many :users, through: :user_vitals
 end

@@ -1,3 +1,4 @@
 class LabTest < ApplicationRecord
-  belongs_to :user
+  has_many :user_lab_tests
+  has_many :users, through: :user_lab_tests
 end
