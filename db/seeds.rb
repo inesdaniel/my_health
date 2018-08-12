@@ -23,6 +23,8 @@
 
 # shots = Shot.create([{name: "Flu"}, {name: "Pneumonia"}, {name: "Tetanus"}, {name: "Hep"}])
 # UserShot.create(user_id: 2, shot_id: 6, date_completed: "2018-07-11")
+# UserShot.create(user_id: 2, shot_id: 5, date_completed: "2018-10-11")
+
 
 # vitals = Vital.create([{name: "Blood Pressure"}, {name: "Heart Rate"}, {name: "Respiratory Rate"}, {name: "Temperature"}, {name: "Oxygen Saturation"}])
 # UserVital.create(user_id: 2, vital_id: 6, date_completed: "2018-06-05", result: "120/80")

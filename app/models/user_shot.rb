@@ -1,2 +1,4 @@
 class UserShot < ApplicationRecord
+  belongs_to :user 
+  belongs_to :shot 
 end
