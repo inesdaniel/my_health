@@ -1,5 +1,7 @@
 class Api::ResultsController < ApplicationController
   def index
+    p current_user
+      
     @shots = Shot.all
     @exams = Exam.all
     @vitals = Vital.all 
