@@ -26,7 +26,7 @@
 
     <div v-for="result in results">
       <p>{{ result.name }}</p>
-      <p>Date Completed: </p>
+      <p>Date Completed: <input v-model="result.date_completed"><button v-on:click="saveDateCompleted()">Save</button></p>
       <hr>
     </div>
 

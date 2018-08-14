@@ -16,7 +16,20 @@ var UserPage = {
     }.bind(this));
   },
   methods: {
+    saveDateCompleted: function() {
+      console.log('saving the date completed');
+      // figure out how to send params for date_completed!
+      var params = {
+        date_completed: this.result.date_completed
+      };
 
+      console.log(params);
+
+      axios.update('/api/user_page/:id', params).then(function(response) {
+        console.log('in update response...');
+        console.log(response.data);
+      });
+    }
   },
   computed: {}
 };
