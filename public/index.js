@@ -9,9 +9,10 @@ var UserPage = {
   },
   created: function() {
     console.log('in created function for user page');
-
     axios.get("/api/user_pages").then(function(response) {
       console.log(response.data);
+      // var i = response.data.length / 2 - 1;
+      // console.log(i);
       this.results = response.data;
     }.bind(this));
   },
