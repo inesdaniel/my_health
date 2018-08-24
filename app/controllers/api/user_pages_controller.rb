@@ -1,4 +1,5 @@
 class Api::UserPagesController < ApplicationController
+
   def index
     # @user_pages = current_user.shots + current_user.vitals + current_user.exams + current_user.lab_tests
 
@@ -19,10 +20,22 @@ class Api::UserPagesController < ApplicationController
   end
 
   def update
-    result = Result.find_by(id: params[:id])
-    result.name = params[:name] || result.name
-    result.date_completed = params[:date_completed] || result.date_completed
-    result.save
-    render json: result.as_json    
+    # result = Vital.find(params[:vital_id])
+    user_vital = UserVital.find_by(user_id: params[:user_id], vital_id: params[:vital_id])
+    # code that works with day/month/year
+    date = Time.parse(params[:date_completed])
+    user_vital.date_completed = date
+
+    # user_vital.date_completed = params[:date_completed] || user_vital.date_completed
+
+    user_vital.save
+
+    render json: user_vital.as_json    
+  end
+
+  def destroy
+    result = Result.find_by(id: result.id)
+    result.destroy
+    redirect_to "/user_page"
   end
 end

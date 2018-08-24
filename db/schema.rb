@@ -10,12 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_10_021049) do
+ActiveRecord::Schema.define(version: 2018_08_24_004955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "exams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lab_tests", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "normal_high_end", precision: 7, scale: 2
+    t.decimal "normal_low_end", precision: 7, scale: 2
+  end
+
+  create_table "shots", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,25 +43,11 @@ ActiveRecord::Schema.define(version: 2018_08_10_021049) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "lab_tests", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.decimal "normal_high_end", precision: 7, scale: 2
-    t.decimal "normal_low_end", precision: 7, scale: 2
-  end
-
   create_table "user_lab_tests", force: :cascade do |t|
     t.integer "user_id"
     t.integer "lab_test_id"
     t.datetime "date_completed"
     t.decimal "result"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "shots", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,25 +60,25 @@ ActiveRecord::Schema.define(version: 2018_08_10_021049) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "vitals", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_vitals", force: :cascade do |t|
     t.integer "user_id"
     t.integer "vital_id"
-    t.datetime "date_completed"
     t.string "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "date_completed"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vitals", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

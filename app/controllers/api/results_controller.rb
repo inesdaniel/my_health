@@ -18,9 +18,5 @@ class Api::ResultsController < ApplicationController
     
     render "show.json.jbuilder" 
   end
-  
-  def create
-    
-  end
 
 end

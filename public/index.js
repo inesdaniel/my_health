@@ -4,29 +4,34 @@ var UserPage = {
   data: function() {
     return {
       message: "In the user page",
-      results: []
+      results: [],
+      result: {date_completed: ""}
     };
   },
   created: function() {
     console.log('in created function for user page');
     axios.get("/api/user_pages").then(function(response) {
       console.log(response.data);
-      // var i = response.data.length / 2 - 1;
-      // console.log(i);
       this.results = response.data;
     }.bind(this));
   },
   methods: {
-    saveDateCompleted: function() {
+    saveDateCompleted: function(inputResult) {
       console.log('saving the date completed');
       // figure out how to send params for date_completed!
+      console.log("I'm the result");
+      console.log(inputResult);
+
       var params = {
-        date_completed: this.result.date_completed
+        date_completed: inputResult.date_completed,
+        vital_id: inputResult.vital_id,
+        result: inputResult.result,
+        user_id: inputResult.user_id
       };
 
       console.log(params);
 
-      axios.update('/api/user_page/:id', params).then(function(response) {
+      axios.patch('/api/user_pages/:id', params).then(function(response) {
         console.log('in update response...');
         console.log(response.data);
       });

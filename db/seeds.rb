@@ -28,3 +28,9 @@
 
 # vitals = Vital.create([{name: "Blood Pressure"}, {name: "Heart Rate"}, {name: "Respiratory Rate"}, {name: "Temperature"}, {name: "Oxygen Saturation"}])
 # UserVital.create(user_id: 2, vital_id: 6, date_completed: "2018-06-05", result: "120/80")
+
+# UserVital.all.each do |uv|
+#   uv.date_completed = Faker::Time.between(10.days.ago, Date.today, :afternoon) #=> "2014-09-18 12:10:34 -0700"
+#   uv.save
+# end
+
