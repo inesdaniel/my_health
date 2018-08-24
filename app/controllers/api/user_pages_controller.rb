@@ -1,5 +1,5 @@
 class Api::UserPagesController < ApplicationController
-
+  require 'date'
   def index
     # @user_pages = current_user.shots + current_user.vitals + current_user.exams + current_user.lab_tests
 
@@ -23,10 +23,12 @@ class Api::UserPagesController < ApplicationController
     # result = Vital.find(params[:vital_id])
     user_vital = UserVital.find_by(user_id: params[:user_id], vital_id: params[:vital_id])
     # code that works with day/month/year
-    date = Time.parse(params[:date_completed])
-    user_vital.date_completed = date
-
-    # user_vital.date_completed = params[:date_completed] || user_vital.date_completed
+    # date = Time.parse(params[:date_completed])
+    # user_vital.date_completed = date
+    date_string = params[:date_completed]
+    datetime = DateTime.strptime(date_string, "%m/%d/%Y")
+    p datetime
+    user_vital.date_completed = datetime || user_vital.date_completed
 
     user_vital.save
 
