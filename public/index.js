@@ -24,9 +24,12 @@ var UserPage = {
 
       var params = {
         date_completed: inputResult.date_completed,
-        vital_id: inputResult.vital_id,
         result: inputResult.result,
-        user_id: inputResult.user_id
+        user_id: inputResult.user_id,
+        vital_id: inputResult.vital_id,
+        shot_id: inputResult.shot_id,
+        exam_id: inputResult.exam_id,
+        lab_test_id: inputResult.lab_test_id
       };
 
       console.log(params);

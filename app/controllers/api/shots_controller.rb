@@ -11,7 +11,7 @@ class Api::ShotsController < ApplicationController
 
   def new
     render "new.json.jbuilder"
-  end
+  end   
 
   def create
     @shot = Shot.new(

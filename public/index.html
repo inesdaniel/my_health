@@ -25,7 +25,7 @@
     <h1>{{ message }}</h1>
 
     <div v-for="result in results">
-      <p>{{ result.shot_name }}{{ result.vital_name }}  {{ result.result}}</p>
+      <p>{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }} {{ result.result}}</p>
       <p>Date Completed: {{ result.date_completed }}</p>
       <p>Update Date: <input v-model="result.date_completed"><button v-on:click="saveDateCompleted(result)">Save</button></p>
       <hr>

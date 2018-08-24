@@ -5,6 +5,8 @@ class Api::UserPagesController < ApplicationController
 
     @user_shots = current_user.user_shots.all 
     @user_vitals =  current_user.user_vitals.all 
+    @user_exams = current_user.user_exams.all
+    @user_lab_tests = current_user.user_lab_tests
     render "index.json.jbuilder"
   end
 
@@ -20,24 +22,38 @@ class Api::UserPagesController < ApplicationController
   end
 
   def update
-    # result = Vital.find(params[:vital_id])
-    user_vital = UserVital.find_by(user_id: params[:user_id], vital_id: params[:vital_id])
-    # code that works with day/month/year
-    # date = Time.parse(params[:date_completed])
-    # user_vital.date_completed = date
-    date_string = params[:date_completed]
-    datetime = DateTime.strptime(date_string, "%m/%d/%Y")
-    p datetime
-    user_vital.date_completed = datetime || user_vital.date_completed
+    if (params.has_key? (:vital_id)) 
+      user_vital = UserVital.find_by(user_id: params[:user_id], vital_id: params[:vital_id])
+      date_string = params[:date_completed]
+      datetime = DateTime.strptime(date_string, "%m/%d/%Y")
+      user_vital.date_completed = datetime || user_vital.date_completed
+      user_vital.save
+    elsif (params.has_key?(:shot_id))
+      user_shot = UserShot.find_by(user_id: params[:user_id], shot_id: params[:shot_id])
+      date_string = params[:date_completed]
+      datetime = DateTime.strptime(date_string, "%m/%d/%Y")
+      user_shot.date_completed = datetime || user_shot.date_completed
+      user_shot.save
+    elsif (params.has_key?(:exam_id))
+      user_exam = UserExam.find_by(user_id: params[:user_id], exam_id: params[:exam_id])
+      date_string = params[:date_completed]
+      datetime = DateTime.strptime(date_string, "%m/%d/%Y")
+      user_exam.date_completed = datetime || user_exam.date_completed
+      user_exam.save 
+    elsif (params.has_key?(:lab_test_id))
+      user_lab_test = UserLabTest.find_by(user_id: params[:user_id], lab_test_id: params[:lab_test_id])
+      date_string = params[:date_completed]
+      datetime = DateTime.strptime(date_string, "%m/%d/%Y")
+      user_lab_test.date_completed = datetime || user_lab_test.date_completed
+      user_lab_test.save  
+    end
 
-    user_vital.save
-
-    render json: user_vital.as_json    
+    render json: user_shot.as_json || user_vital.as_json || user_exam.as_json || user_lab_test.as_json
   end
 
   def destroy
-    result = Result.find_by(id: result.id)
-    result.destroy
+    user_lab_test = UserLabTest.find_by(id: user_lab_test.id)
+    user_lab_test.destroy
     redirect_to "/user_page"
   end
 end
