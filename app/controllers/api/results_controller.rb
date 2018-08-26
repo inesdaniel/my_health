@@ -13,8 +13,7 @@ class Api::ResultsController < ApplicationController
 
   def show
     result_id = params[:id]
-
-    # @result = Shot.find(result_id)
+    @result = 
     
     render "show.json.jbuilder" 
   end
