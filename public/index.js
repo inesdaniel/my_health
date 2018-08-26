@@ -136,6 +136,7 @@ var LoginPage = {
   },
   methods: {
     submit: function() {
+      console.log("in submit function of login");
       var params = {
         email: this.email, password: this.password
       };
@@ -197,7 +198,8 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      results: []
+      results: [],
+      // appName: "My Health"
     };
   },
   created: function() {
@@ -220,8 +222,8 @@ var router = new VueRouter({
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
-    { path: "/user_page", component: UserPage},
-    { path: "/user_pages/:id", component: UserShowPage}
+    { path: "/user_page", component: UserPage}
+    // { path: "/user_pages/:id", component: UserShowPage}
 
 
   ],

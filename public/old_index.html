@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <div id="vue-app">
+    <a href="/#/user_page">Home</a>
+    <a href="/#/signup">Signup</a>
+    <a href="/#/login">Login</a>
+    <a href="/#/logout">Logout</a>  
+    <router-view></router-view> 
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<template id="user-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+
+    <div v-for="result in results">
+      <h6><a v-bind:href="'/#/user_pages/' + result.shot_id">{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }}</a></h6>
+      <div class="result"> {{ result.result }} <input v-model="result.result" > <button v-on:click="saveResult(result)"> Update Result </button></div>
+
+      <h6>Date Completed: {{ result.date_completed }}</h6>
+      <h6>Update Date: <input v-model="result.date_completed"><button v-on:click="saveDateCompleted(result)">Save</button></h6>
+      <hr>
+    </div>
+
+  </div>
+</template>
+
+<template id="login-page">
+  <div class="vue-component">
+
+    <div class="container">
+      <h1>Login</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" class="form-control" v-model="email">
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" class="form-control" v-model="password">
+      </div>
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
+
+  </div>
+</template>
+
+<template id="signup-page">
+  <div class="vue-component">
+
+    <div class="container">
+      <h1>Signup</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Name:</label> 
+        <input type="text" class="form-control" v-model="name">
+      </div>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" class="form-control" v-model="email">
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" class="form-control" v-model="password">
+      </div>
+      <div class="form-group">
+        <label>Password confirmation:</label>
+        <input type="password" class="form-control" v-model="passwordConfirmation">
+      </div>
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
+
+  </div>
+</template>
+
+<template id="home-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+
+    <div v-for="result in results">
+      <p>{{ result.name }}</p>
+      <p>Date Completed: </p>
+      <hr>
+    </div>
+
+  </div>
+</template>
+
+<!-- nice to have -->
+<template id="user-show-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+
+    <div v-for="result in results">
+      <p>Date Completed: {{ result.date_completed }}</p>
+      <p>Update Date: <input v-model="result.date_completed"><button v-on:click="saveDateCompleted(result)">Save</button></p>
+      <hr>
+    </div>
+
+  </div>
+</template>

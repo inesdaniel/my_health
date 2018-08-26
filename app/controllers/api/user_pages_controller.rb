@@ -37,7 +37,6 @@ class Api::UserPagesController < ApplicationController
   end
 
   def update
-    # old_dates_completed = []
     if (params.has_key? (:vital_id)) 
       user_vital = UserVital.find_by(user_id: params[:user_id], vital_id: params[:vital_id])
 
