@@ -182,7 +182,7 @@ var SignupPage = {
       axios
         .post("/api/users", params)
         .then(function(response) {
-          router.push("/login");
+          router.push("/user_page");
         })
         .catch(
           function(error) {
