@@ -14,11 +14,12 @@
         <script src="https://unpkg.com/axios/dist/axios.js"></script>
         <script src="index.js" defer></script>
     </head>
-    <body>
+    <body class="boxed">
         <div id="vue-app">
             <div id="preloader">
                 <div id="preloader-inner"></div>
             </div><!--/preloader-->
+            <section class="boxed-wrapper">
             <header class="header header-sticky header-transparent header-light">
                 <div class="top-bar navbar">
                     <div class="container">
@@ -123,7 +124,7 @@
                     </div>
                 </nav><!--nav end-->
             </header>
-
+<!-- need content below header to complete box model here -->          
             <router-view></router-view>
 
             <!--footer-->
@@ -305,96 +306,96 @@
         <div class="row intro-row">
             <div class="col-md-12 text-center wow animated fadeInUp">
                 <h2>MyHealth</h2>
-                <h3 class="subtitle">Helps you keep track of your health</h3>
+                <h3 class="subtitle">Track dates, results and medications</h3>
             </div>
         </div> <!-- plain boxes end-->
 
         <!-- code for picture boxes starts-->
         <div class="space-70"></div><div class="space-30"></div>
 
-    <div class="container">
-    
-    <div class="row">
-        <div class="col-md-4 col-sm-6 margin-btm-40">
-            <div class="portfolio-sec">
-                <div class="portfolio-thumnail">
-                    <a href="portfolio-single.html">
-                        <img src="assets/img/work/work-1.jpg" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="portfolio-desc text-center">
-                    <h4 class="portfolio-post-title">Exams</h4>
-                    <span class="portfolio-post-cat">Know when your last exam was, to know when to schedule your next</span>
-                </div>
-            </div>
-        </div><!--portfolio item -->
-        <div class="col-md-4 col-sm-6 margin-btm-40">
-            <div class="portfolio-sec">
-                <div class="portfolio-thumnail">
-                    <a href="portfolio-single.html">
-                        <img src="assets/img/work/work-2.jpg" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="portfolio-desc text-center">
-                    <h4 class="portfolio-post-title">Medications</h4>
-                    <span class="portfolio-post-cat">Always know what medications you are taking by simply loging in</span>
-                </div>
-            </div>
-        </div><!--portfolio item -->
-        <div class="col-md-4 col-sm-6 margin-btm-40">
-            <div class="portfolio-sec">
-                <div class="portfolio-thumnail">
-                    <a href="portfolio-single.html">
-                        <img src="assets/img/work/work-3.jpg" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="portfolio-desc text-center">
-                    <h4 class="portfolio-post-title">Vitals</h4>
-                    <span class="portfolio-post-cat">Because they're important, Track trends to stay within normal range</span>
-                </div>
-            </div>
-        </div><!--portfolio item -->
-        <div class="col-md-4 col-sm-6 margin-btm-40">
-            <div class="portfolio-sec">
-                <div class="portfolio-thumnail">
-                    <a href="portfolio-single.html">
-                        <img src="assets/img/work/work-4.jpg" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="portfolio-desc text-center">
-                    <h4 class="portfolio-post-title">Lab Tests</h4>
-                    <span class="portfolio-post-cat">Compare current and past tests</span>
-                </div>
-            </div>
-        </div><!--portfolio item -->
-        <div class="col-md-4 col-sm-6 margin-btm-40">
-            <div class="portfolio-sec">
-                <div class="portfolio-thumnail">
-                    <a href="portfolio-single.html">
-                        <img src="assets/img/work/work-5.jpg" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="portfolio-desc text-center">
-                    <h4 class="portfolio-post-title">Vaccines</h4>
-                    <span class="portfolio-post-cat">Look up when you last received a vaccine</span>
-                </div>
-            </div>
-        </div><!--portfolio item -->
-        <div class="col-md-4 col-sm-6 margin-btm-40">
-            <div class="portfolio-sec">
-                <div class="portfolio-thumnail">
-                    <a href="portfolio-single.html">
-                        <img src="assets/img/work/work-6.jpg" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="portfolio-desc text-center">
-                    <h4 class="portfolio-post-title">Doctor's Appointments</h4>
-                    <span class="portfolio-post-cat">Never miss another appointment</span>
-                </div>
-            </div>
-        </div><!--portfolio item -->
-    </div><!--row portfolio item-->
-    </div><!--recent work container end-->
+        <div class="container">
+        
+            <div class="row">
+                <div class="col-md-4 col-sm-6 margin-btm-40">
+                    <div class="portfolio-sec">
+                        <div class="portfolio-thumnail">
+                            <a href="portfolio-single.html">
+                                <img src="assets/img/work/work-1.jpg" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="portfolio-desc text-center">
+                            <h4 class="portfolio-post-title">Exams</h4>
+                            <span class="portfolio-post-cat">Know when your last exam was, to know when to schedule your next</span>
+                        </div>
+                    </div>
+                </div><!--portfolio item -->
+                <div class="col-md-4 col-sm-6 margin-btm-40">
+                    <div class="portfolio-sec">
+                        <div class="portfolio-thumnail">
+                            <a href="portfolio-single.html">
+                                <img src="assets/img/work/work-2.jpg" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="portfolio-desc text-center">
+                            <h4 class="portfolio-post-title">Medications</h4>
+                            <span class="portfolio-post-cat">Always know what medications you are taking by simply loging in</span>
+                        </div>
+                    </div>
+                </div><!--portfolio item -->
+                <div class="col-md-4 col-sm-6 margin-btm-40">
+                    <div class="portfolio-sec">
+                        <div class="portfolio-thumnail">
+                            <a href="portfolio-single.html">
+                                <img src="assets/img/work/work-3.jpg" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="portfolio-desc text-center">
+                            <h4 class="portfolio-post-title">Vitals</h4>
+                            <span class="portfolio-post-cat">Because they're important, Track trends to stay within normal range</span>
+                        </div>
+                    </div>
+                </div><!--portfolio item -->
+                <div class="col-md-4 col-sm-6 margin-btm-40">
+                    <div class="portfolio-sec">
+                        <div class="portfolio-thumnail">
+                            <a href="portfolio-single.html">
+                                <img src="assets/img/work/work-4.jpg" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="portfolio-desc text-center">
+                            <h4 class="portfolio-post-title">Lab Tests</h4>
+                            <span class="portfolio-post-cat">Compare current and past tests</span>
+                        </div>
+                    </div>
+                </div><!--portfolio item -->
+                <div class="col-md-4 col-sm-6 margin-btm-40">
+                    <div class="portfolio-sec">
+                        <div class="portfolio-thumnail">
+                            <a href="portfolio-single.html">
+                                <img src="assets/img/work/work-5.jpg" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="portfolio-desc text-center">
+                            <h4 class="portfolio-post-title">Vaccines</h4>
+                            <span class="portfolio-post-cat">Look up when you last received a vaccine</span>
+                        </div>
+                    </div>
+                </div><!--portfolio item -->
+                <div class="col-md-4 col-sm-6 margin-btm-40">
+                    <div class="portfolio-sec">
+                        <div class="portfolio-thumnail">
+                            <a href="portfolio-single.html">
+                                <img src="assets/img/work/work-6.jpg" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="portfolio-desc text-center">
+                            <h4 class="portfolio-post-title">Doctor's Appointments</h4>
+                            <span class="portfolio-post-cat">Never miss another appointment</span>
+                        </div>
+                    </div>
+                </div><!--portfolio item -->
+            </div><!--row portfolio item-->
+        </div><!--recent work container end-->
     </div> <!-- end vue-component div -->
 </template>
 

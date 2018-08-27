@@ -10,6 +10,10 @@ class Api::UserPagesController < ApplicationController
     render "index.json.jbuilder"
   end
 
+  def new
+    render "new.json.jbuilder"
+  end
+
   def create
     result = Result.new(name: params[:name], date_completed: params[:date_completed])
     result.save
