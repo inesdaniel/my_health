@@ -8,7 +8,6 @@ json.array! @user_shots.each do |user_shot|
   json.shot_id user_shot.shot_id
   json.shot_name user_shot.shot.name
   json.date_completed user_shot.date_completed.strftime("%m/%d/%Y")
-  
 end
 
 json.array! @user_vitals.each do |user_vital|
@@ -32,4 +31,12 @@ json.array! @user_lab_tests.each do |user_lab_test|
   json.lab_test_name user_lab_test.lab_test.name
   json.date_completed user_lab_test.date_completed.strftime("%m/%d/%Y")
   json.result user_lab_test.result
+end
+
+json.array! @results.each do |result|
+  json.id result.id
+  json.user_id result.user_id
+  json.test_name result.test_name
+  json.date_completed result.date_completed.strftime("%m/%d/%Y")
+  json.result result.result
 end

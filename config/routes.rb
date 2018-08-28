@@ -12,10 +12,12 @@ Rails.application.routes.draw do
     post "/sessions" => "sessions#create"
 
     get "/user_pages" => "user_pages#index"
+    get "/user_pages/new" => "user_pages#new"
     post "/user_pages" => "user_pages#create"
     get "/user_pages/:id" => "user_pages#show"
     patch "/user_pages/:id" => "user_pages#update"
     delete "/user_pages/:id" => "user_pages#destroy"
+
 
     get "/exams" => "exams#index"
     post "/exams" => "exams#create"

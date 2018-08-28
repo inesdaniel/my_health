@@ -27,7 +27,7 @@
                         <ul class="navbar-nav flex-row nav ml-auto">
                             <li class="nav-item"><a href="/#/signup" class="nav-link">Create an account?</a></li>
                             <li class="nav-item">
-                                <a href="/?#/login" class="nav-link"><i class="ion-android-lock mr-2"></i>Login</a></li>
+                                <a href="/#/login" class="nav-link"><i class="ion-android-lock mr-2"></i>Login</a></li>
 
                             <li class="dropdown nav-item">
                                 <a href="/#/logout"> Logout</a>   
@@ -215,6 +215,44 @@
     </body>
 </html>
 
+<template id="new-test-page">
+    <div class="vue-component">
+        <section id="content-region-3" class="padding-40 page-tree-bg">
+        <div class="container">
+            <h3 class="page-tree-text">
+               
+            </h3>
+        </div>
+        </section><!--page-tree end here-->
+        <div class="space-70"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 ml-auto mr-auto">
+                    <div class="my-login-form">
+                        <h4 class="text-uppercase">Add a new test</h4><hr>
+                        <div class="row">
+                            <div class="col-md-12 margin-btm-20">
+                                <input type="text" class="form-control" placeholder="Test Name.." v-model="test_name">
+                            </div>
+                             <div class="col-md-6 margin-btm-20">
+                                <input type="text" class="form-control" placeholder="Result.." v-model="result">
+                            </div>
+                             <div class="col-md-6 margin-btm-20">
+                                <input type="text" class="form-control" placeholder="Date Completed.." v-model="date_completed">
+                            </div>
+            
+                            <div class="col-md-12 text-right">
+                                <button type="submit" class="btn theme-btn-color" v-on:click="submit()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template id="user-page">
   <div class="vue-component">
     <section id="content-region-3" class="padding-40 page-tree-bg">
@@ -230,7 +268,7 @@
                 <div class="col-md-4" v-for="result in results">
                     <div class="portfolio-side-bar">
                         <p>
-                            <strong><a v-bind:href="'/#/user_pages/' + result.shot_id">{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }}</a></strong> 
+                            <strong><a v-bind:href="'/#/user_pages/' + result.shot_id">{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }} {{ result.test_name }}</a></strong> 
                         </p>
                         <p class="result">
                             <strong>Result:</strong> 
@@ -246,11 +284,15 @@
                         </p>
                         <p>
                             <a class="btn btn-radius theme-btn-color" v-on:click="saveDateCompleted(result)">Save</a>
+                            <a class="btn btn-radius theme-btn-color" v-on:click="deleteTest(result)">Delete</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="space-30"></div>
+        <div class="text-center">
+        <a class="theme-btn-color-outline btn-radius btn" href="/#/user_page/new">ADD A NEW TEST </a>
     </div>
   </div>
 </template>
@@ -414,7 +456,6 @@
                 <div class="row">
                     <div class="col-lg-6  ml-auto mr-auto">
                         <div class="my-login-form">
-                            <form>
                                 <h4 class="text-uppercase">Login</h4><hr>
                                 <div class="form-group">
                                     <input type="email" class="form-control" v-model="email" placeholder="Email..">
@@ -429,7 +470,6 @@
                                 <div class="form-btm-link text-center">
                                     <a href="/#/signup">Create new account</a>
                                 </div>
-                            </form><!--login form end-->
                         </div>
                     </div>
                 </div>
@@ -454,7 +494,6 @@
             <div class="row">
                 <div class="col-lg-6 ml-auto mr-auto">
                     <div class="my-login-form">
-                         <form>
                         <h4 class="text-uppercase">Sign up</h4><hr>
                         <div class="row">
                             <div class="col-md-6 margin-btm-20">
@@ -475,9 +514,8 @@
                         </div>
                         <hr>
                         <div class="form-btm-link text-center">
-                         <a href="/?#/login">Already have an account? </a>
+                         <a href="/#/login">Already have an account? </a>
                         </div>
-                    </form>
                     </div>
                 </div>
             </div>

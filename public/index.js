@@ -1,58 +1,89 @@
 /* global Vue, VueRouter, axios */
 // this is a nice to have, display old dates user entered
-var UserShowPage = {
+// var UserShowPage = {
 
-  props: ['date_completed'],
-  template: "#user-show-page",
+//   props: ['date_completed'],
+//   template: "#user-show-page",
+//   data: function() {
+//     return {
+//       message: "In the user show page",
+//       results: [],
+//       result: {date_completed: ""},
+//       dates: []
+//     };
+//   },
+//   created: function() {
+//     console.log('in created function for user page');
+//     axios.get("/api/user_pages").then(function(response) {
+//       console.log(response.data);
+//       var result = response.data;
+//       var dates = 
+//       result.forEach(function(element) {
+//         console.log(element.date_completed);
+//         var dates = element.date_completed;
+//       });
+//       console.log("set dates var");
+//       // console.log(dates);
+//       this.results = response.dates;
+//     }.bind(this));
+//     console.log("set results to dates");
+
+//   },
+//   methods: {
+//     saveDateCompleted: function(inputResult) {
+//       console.log("I'm saving the date completed ");
+//       console.log(inputResult);
+
+//       var params = {
+//         date_completed: inputResult.date_completed,
+//         result: inputResult.result,
+//         user_id: inputResult.user_id,
+//         vital_id: inputResult.vital_id,
+//         shot_id: inputResult.shot_id,
+//         exam_id: inputResult.exam_id,
+//         lab_test_id: inputResult.lab_test_id
+//       };
+
+//       console.log(params);
+
+//       axios.patch('/api/user_pages/:id', params).then(function(response) {
+//         console.log('in update response...');
+//         console.log(response.data);
+//       });
+//     }
+//   },
+//   computed: {}
+// };
+
+var NewTestPage = {
+  template: "#new-test-page",
   data: function() {
     return {
-      message: "In the user show page",
-      results: [],
-      result: {date_completed: ""},
-      dates: []
+      test_name: "",
+      result: "",
+      date_completed: "",
+      errors: []
     };
   },
-  created: function() {
-    console.log('in created function for user page');
-    axios.get("/api/user_pages").then(function(response) {
-      console.log(response.data);
-      var result = response.data;
-      var dates = 
-      result.forEach(function(element) {
-        console.log(element.date_completed);
-        var dates = element.date_completed;
-      });
-      console.log("set dates var");
-      // console.log(dates);
-      this.results = response.dates;
-    }.bind(this));
-    console.log("set results to dates");
-
-  },
   methods: {
-    saveDateCompleted: function(inputResult) {
-      console.log("I'm saving the date completed ");
-      console.log(inputResult);
-
+    submit: function() {
       var params = {
-        date_completed: inputResult.date_completed,
-        result: inputResult.result,
-        user_id: inputResult.user_id,
-        vital_id: inputResult.vital_id,
-        shot_id: inputResult.shot_id,
-        exam_id: inputResult.exam_id,
-        lab_test_id: inputResult.lab_test_id
+        test_name: this.test_name,
+        result: this.result,
+        date_completed: this.date_completed
       };
-
-      console.log(params);
-
-      axios.patch('/api/user_pages/:id', params).then(function(response) {
-        console.log('in update response...');
-        console.log(response.data);
-      });
+      axios
+        .post("/api/user_pages", params)
+        .then(function(response) {
+          router.push("/user_page");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
     }
-  },
-  computed: {}
+  }
 };
 
 var UserPage = {
@@ -73,6 +104,24 @@ var UserPage = {
     }.bind(this));
   },
   methods: {
+    deleteTest: function(inputResult) {
+      console.log("deleting the test");
+      console.log(inputResult);
+
+      // var params = {
+      //   user_id: inputResult.user_id,
+      //   id: inputResult.id,
+      //   vital_id: inputResult.vital_id,
+      //   shot_id: inputResult.shot_id,
+      //   exam_id: inputResult.exam_id,
+      //   lab_test_id: inputResult.lab_test_id
+      // };
+      
+      // console.log(params);
+      axios.delete("/api/user_pages/:id", {data: inputResult}).then(function(response) {
+        console.log("in delete response");
+      });
+    },
     saveResult: function(inputResult) {
       console.log("I'm saving the result ");
       console.log(inputResult);
@@ -222,7 +271,9 @@ var router = new VueRouter({
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
-    { path: "/user_page", component: UserPage}
+    { path: "/user_page", component: UserPage},
+    { path: "/user_page/new", component: NewTestPage}
+
     // { path: "/user_pages/:id", component: UserShowPage}
 
 
