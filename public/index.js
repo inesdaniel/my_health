@@ -77,7 +77,10 @@ var SetUpPage = {
       var dateCompleted = "01/01/1900";
       var params = {
         user_id: inputResult.user_ids,
-        exam_id: inputResult.id,
+        exam_id: inputResult.exam_id,
+        lab_test_id: inputResult.lab_test_id,
+        shot_id: inputResult.shot_id,
+        vital_id: inputResult.vital_id,
         date_completed: dateCompleted
       };
       console.log('params');

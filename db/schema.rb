@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_235428) do
+ActiveRecord::Schema.define(version: 2018_08_29_154126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_235428) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "exam_id"
   end
 
   create_table "lab_tests", force: :cascade do |t|
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_235428) do
     t.datetime "updated_at", null: false
     t.decimal "normal_high_end", precision: 7, scale: 2
     t.decimal "normal_low_end", precision: 7, scale: 2
+    t.integer "lab_test_id"
   end
 
   create_table "results", force: :cascade do |t|
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_235428) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shot_id"
   end
 
   create_table "user_exams", force: :cascade do |t|
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_235428) do
     t.integer "exam_id"
     t.datetime "date_completed"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: falsex
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_lab_tests", force: :cascade do |t|
@@ -90,6 +93,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_235428) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vital_id"
   end
 
 end

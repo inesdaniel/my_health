@@ -23,17 +23,40 @@ class Api::ResultsController < ApplicationController
   end
 
   def create
-    @user_exam = UserExam.new(
-      user_id: current_user.id,
-      exam_id: params[:exam_id],
-      date_completed: "01/01/1900"
-    )
-    @user_exam.save
+    if (params.has_key?(:exam_id))
+      @user_exam = UserExam.new(
+        user_id: current_user.id,
+        exam_id: params[:exam_id],
+        date_completed: "01/01/1900",
+      )
+      @user_exam.save
+    elsif (params.has_key?(:lab_test_id))
+      @user_lab_test = UserLabTest.new(
+        user_id: current_user.id,
+        lab_test_id: params[:lab_test_id],
+        date_completed: "01/01/1900"
+      )
+      @user_lab_test.save
+    elsif (params.has_key?(:shot_id))
+      @user_shot = UserShot.new(
+        user_id: current_user.id,
+        shot_id: params[:shot_id],
+        date_completed: "01/01/1900",
+      )
+      @user_shot.save
+    elsif (params.has_key? (:vital_id)) 
+      @user_vital = UserVital.new(
+        user_id: current_user.id,
+        vital_id: params[:vital_id],
+        date_completed: "01/01/1900",
+      )
+      @user_vital.save
+    end
 
     # @user_lab_tests
     # @user_shots
     # @user_vitals
-    render json: {message: @user_exam.errors.full_messages}
+    render json: {}
   end
 
 end

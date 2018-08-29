@@ -29,8 +29,36 @@
 # vitals = Vital.create([{name: "Blood Pressure"}, {name: "Heart Rate"}, {name: "Respiratory Rate"}, {name: "Temperature"}, {name: "Oxygen Saturation"}])
 # UserVital.create(user_id: 2, vital_id: 6, date_completed: "2018-06-05", result: "120/80")
 
+
 # UserVital.all.each do |uv|
 #   uv.date_completed = Faker::Time.between(10.days.ago, Date.today, :afternoon) #=> "2014-09-18 12:10:34 -0700"
 #   uv.save
 # end
 
+
+
+
+# assign table id to equal tablename_id
+# @exams = Exam.all
+# @exams.each do |exam|
+#   exam.exam_id = exam.id 
+#   exam.save
+# end
+
+# @shots = Shot.all
+# @shots.each do |shot|
+#   shot.shot_id = shot.id 
+#   shot.save
+# end
+
+# @vitals = Vital.all
+# @vitals.each do |vital|
+#   vital.vital_id = vital.id 
+#   vital.save
+# end
+
+# @lab_tests = LabTest.all
+# @lab_tests.each do |lab_test|
+#   lab_test.lab_test_id = lab_test.id 
+#   lab_test.save
+# end

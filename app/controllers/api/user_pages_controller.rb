@@ -111,7 +111,7 @@ class Api::UserPagesController < ApplicationController
       user_exam = UserExam.find_by(user_id: params[:user_id], exam_id: params[:exam_id])
       user_exam.destroy
     elsif (params.has_key?(:lab_test_id))
-      user_lab_test = UserLabTest.find_by(id: user_lab_test.id)
+      user_lab_test = UserLabTest.find_by(user_id: params[:user_id], lab_test_id: params[:lab_test_id])
       user_lab_test.destroy
     elsif (params.has_key?(:id))
       results = current_user.results
