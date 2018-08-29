@@ -108,18 +108,20 @@ var UserPage = {
       console.log("deleting the test");
       console.log(inputResult);
 
-      // var params = {
-      //   user_id: inputResult.user_id,
-      //   id: inputResult.id,
-      //   vital_id: inputResult.vital_id,
-      //   shot_id: inputResult.shot_id,
-      //   exam_id: inputResult.exam_id,
-      //   lab_test_id: inputResult.lab_test_id
-      // };
+      var params = {
+        user_id: inputResult.user_id,
+        id: inputResult.id,
+        vital_id: inputResult.vital_id,
+        shot_id: inputResult.shot_id,
+        exam_id: inputResult.exam_id,
+        lab_test_id: inputResult.lab_test_id
+      };
       
-      // console.log(params);
-      axios.delete("/api/user_pages/:id", {data: inputResult}).then(function(response) {
+      console.log(params);
+      axios.delete("/api/user_pages/:id", {data: params}).then(function(response) {
         console.log("in delete response");
+        router.push({ path: "/user_page"}); // doesn't actually refresh user page but get console logs
+        console.log('rerouting page');
       });
     },
     saveResult: function(inputResult) {

@@ -82,17 +82,19 @@ class Api::UserPagesController < ApplicationController
       datetime = DateTime.strptime(date_string, "%m/%d/%Y")
       user_lab_test.date_completed = datetime || user_lab_test.date_completed
       user_lab_test.save  
-# fix updating new test user adds 
-    # elsif (params.has_key?(:id))
-    #   user_result = Result.find_by(user_id: params[:user_id], id: params[:id])    
+    elsif (params.has_key?(:id))
+      results = current_user.results
+      id = results.ids
+      p id 
+      user_result = Result.find_by(user_id: params[:user_id], id: id)   
+      
+      result = params[:result]
+      user_result.result = result 
 
-    #   result = params[:result]
-    #   user_result.result = result 
-
-    #   # date_string = params[:date_completed]
-    #   # datetime = DateTime.strptime(date_string, "%m/%d/%Y")
-    #   # user_result.date_completed = datetime || user_result.date_completed
-    #   user_result.save  
+      date_string = params[:date_completed]
+      datetime = DateTime.strptime(date_string, "%m/%d/%Y")
+      user_result.date_completed = datetime || user_result.date_completed
+      user_result.save  
     end
 
     render json: user_shot.as_json || user_vital.as_json || user_exam.as_json || user_lab_test.as_json || user_result.as_json
@@ -111,9 +113,12 @@ class Api::UserPagesController < ApplicationController
     elsif (params.has_key?(:lab_test_id))
       user_lab_test = UserLabTest.find_by(id: user_lab_test.id)
       user_lab_test.destroy
-    # elsif (params.has_key?(:id))
-    #   user_result = Result.find_by(user_id: params[:user_id], id: params[:id])    
-    #   user_result.destroy
+    elsif (params.has_key?(:id))
+      results = current_user.results
+      id = results.ids
+      p id 
+      user_result = Result.find_by(user_id: params[:user_id], id: id)    
+      user_result.destroy
     end
     render json: {}
   end
