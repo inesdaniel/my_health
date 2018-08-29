@@ -215,42 +215,38 @@
     </body>
 </html>
 
-<template id="new-test-page">
-    <div class="vue-component">
-        <section id="content-region-3" class="padding-40 page-tree-bg">
+<template id="set-up-page">
+  <div class="vue-component">
+    <section id="content-region-3" class="padding-40 page-tree-bg">
         <div class="container">
             <h3 class="page-tree-text">
-               
+                Set up page
             </h3>
         </div>
-        </section><!--page-tree end here-->
-        <div class="space-70"></div>
-
-        <div class="container">
+    </section><!--page-tree end here-->
+    <div class="space-70"></div>
+        <div class="container portfolio-details">
             <div class="row">
-                <div class="col-lg-6 ml-auto mr-auto">
-                    <div class="my-login-form">
-                        <h4 class="text-uppercase">Add a new test</h4><hr>
-                        <div class="row">
-                            <div class="col-md-12 margin-btm-20">
-                                <input type="text" class="form-control" placeholder="Test Name.." v-model="test_name">
-                            </div>
-                             <div class="col-md-6 margin-btm-20">
-                                <input type="text" class="form-control" placeholder="Result.." v-model="result">
-                            </div>
-                             <div class="col-md-6 margin-btm-20">
-                                <input type="text" class="form-control" placeholder="Date Completed.." v-model="date_completed">
-                            </div>
-            
-                            <div class="col-md-12 text-right">
-                                <button type="submit" class="btn theme-btn-color" v-on:click="submit()">Save</button>
-                            </div>
-                        </div>
+                <div class="col-md-4" v-for="result in results">
+                    <div class="portfolio-side-bar">
+                        <p>
+                            <strong>{{ result.name }}</strong> 
+                        </p>
+                        <p>
+                            <a class="btn btn-radius theme-btn-color" v-on:click="saveToUserPage(result)">ADD</a>
+                           
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="space-30"></div>
+        <div class="text-center">
+            <a class="theme-btn-color-outline btn-radius btn" href="/#/user_page">GO TO USER PAGE </a>
+        </div>
+        <div class="space-30"></div>
+
+  </div>
 </template>
 
 <template id="user-page">
@@ -292,8 +288,9 @@
         </div>
         <div class="space-30"></div>
         <div class="text-center">
-        <a class="theme-btn-color-outline btn-radius btn" href="/#/user_page/new">ADD A NEW TEST </a>
-    </div>
+            <a class="theme-btn-color-outline btn-radius btn" href="/#/user_page/new">ADD A NEW TEST </a>
+            <a class="theme-btn-color-outline btn-radius btn" href="/#/set_up_page">ADD TEST FROM DB </a>
+        </div>
   </div>
 </template>
 
@@ -439,6 +436,44 @@
             </div><!--row portfolio item-->
         </div><!--recent work container end-->
     </div> <!-- end vue-component div -->
+</template>
+
+<template id="new-test-page">
+    <div class="vue-component">
+        <section id="content-region-3" class="padding-40 page-tree-bg">
+        <div class="container">
+            <h3 class="page-tree-text">
+               
+            </h3>
+        </div>
+        </section><!--page-tree end here-->
+        <div class="space-70"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 ml-auto mr-auto">
+                    <div class="my-login-form">
+                        <h4 class="text-uppercase">Add a new test</h4><hr>
+                        <div class="row">
+                            <div class="col-md-12 margin-btm-20">
+                                <input type="text" class="form-control" placeholder="Test Name.." v-model="test_name">
+                            </div>
+                             <div class="col-md-6 margin-btm-20">
+                                <input type="text" class="form-control" placeholder="Result.." v-model="result">
+                            </div>
+                             <div class="col-md-6 margin-btm-20">
+                                <input type="text" class="form-control" placeholder="Date Completed.." v-model="date_completed">
+                            </div>
+            
+                            <div class="col-md-12 text-right">
+                                <button type="submit" class="btn theme-btn-color" v-on:click="submit()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <template id="login-page">

@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   # verb "/urls" => "namespace/controllers#action"
   namespace :api do
     get "/results" => "results#index"
+    get "/results/new" => "results#new"
     get "/results/:id" => "results#show"
     delete "/results/:id" => "results#destroy"
-    # post "/results" => "results#create"
+    post "/results" => "results#create"
     # patch "/results/:id" => "results#update"
 
     post "/users" => "users#create"
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
     get "/user_pages/:id" => "user_pages#show"
     patch "/user_pages/:id" => "user_pages#update"
     delete "/user_pages/:id" => "user_pages#destroy"
-
 
     get "/exams" => "exams#index"
     post "/exams" => "exams#create"

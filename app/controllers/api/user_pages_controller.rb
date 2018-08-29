@@ -16,16 +16,18 @@ class Api::UserPagesController < ApplicationController
   end
 
   def create
-    @result = Result.new(
-      user_id: current_user.id, 
-      test_name: params[:test_name],
-      result: params[:result],
-      date_completed: params[:date_completed]
-    )
-    date_string = params[:date_completed]
-    datetime = DateTime.strptime(date_string, "%m/%d/%Y")
-    @result.date_completed = datetime
-    @result.save
+    if (params.has_key?(:exam_id))
+      @user_exam = UserExam.new(
+        user_id: params[:user_id],
+        exam_id: params[:exam_id], 
+        date_completed: "01/01/1900"
+      )
+      @user_exam.save
+    end
+    # date_string = params[:date_completed]
+    # datetime = DateTime.strptime(date_string, "%m/%d/%Y")
+    # @result.date_completed = datetime
+    # @result.save
     render json: @result.as_json
   end
 

@@ -54,6 +54,42 @@
 //   },
 //   computed: {}
 // };
+var SetUpPage = {
+  template: "#set-up-page",
+  data: function() {
+    return {
+      message: "Welcome to Vue.js!",
+      results: [],
+    };
+  },
+  created: function() {
+    console.log('in created function for set up page');
+
+    axios.get("/api/results").then(function(response) {
+      console.log(response.data);
+      this.results = response.data;
+    }.bind(this));
+  },
+  methods: {
+    saveToUserPage: function(inputResult) {
+      console.log("I'm saving the test");
+      console.log(inputResult);
+      var dateCompleted = "01/01/1900";
+      var params = {
+        user_id: inputResult.user_ids,
+        exam_id: inputResult.id,
+        date_completed: dateCompleted
+      };
+      console.log('params');
+      console.log(params);
+      axios.post('/api/results', params).then(function(response) {
+        console.log('in save response for set up page');
+        console.log(response.data);
+      });
+    }
+  },
+  computed: {}
+};
 
 var NewTestPage = {
   template: "#new-test-page",
@@ -274,7 +310,9 @@ var router = new VueRouter({
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
     { path: "/user_page", component: UserPage},
-    { path: "/user_page/new", component: NewTestPage}
+    { path: "/user_page/new", component: NewTestPage},
+    { path: "/set_up_page", component: SetUpPage}
+
 
     // { path: "/user_pages/:id", component: UserShowPage}
 

@@ -1,4 +1,4 @@
 class UserExam < ApplicationRecord
   belongs_to :user 
-  belongs_to :exam
+  belongs_to :exam, optional: true
 end

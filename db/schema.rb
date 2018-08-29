@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_235428) do
     t.integer "exam_id"
     t.datetime "date_completed"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "updated_at", null: falsex
   end
 
   create_table "user_lab_tests", force: :cascade do |t|
