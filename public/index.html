@@ -266,9 +266,9 @@
                         <p>
                             <strong><a v-bind:href="'/#/user_pages/' + result.shot_id">{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }} {{ result.test_name }}</a></strong> 
                         </p>
-                        <p class="result">
+                        <p class="result" v-if="hasResultParam(result)">
                             <strong>Result:</strong> 
-                                <input v-model="result.result" > <button v-on:click="saveResult(result)"> Update Result </button>
+                                <input v-model="result.result" placeholder="enter result.."> 
                         </p>
                         
                         <p>
@@ -279,7 +279,7 @@
                             Update Date: <input v-model="result.date_completed">
                         </p>
                         <p>
-                            <a class="btn btn-radius theme-btn-color" v-on:click="saveDateCompleted(result)">Save</a>
+                            <a class="btn btn-radius theme-btn-color" v-on:click="saveResultAndDateCompleted(result)">Save</a>
                             <a class="btn btn-radius theme-btn-color" v-on:click="deleteTest(result)">Delete</a>
                         </p>
                     </div>
@@ -291,6 +291,8 @@
             <a class="theme-btn-color-outline btn-radius btn" href="/#/user_page/new">ADD A NEW TEST </a>
             <a class="theme-btn-color-outline btn-radius btn" href="/#/set_up_page">ADD TEST FROM DB </a>
         </div>
+        <div class="space-30"></div>
+
   </div>
 </template>
 

@@ -143,6 +143,19 @@ var UserPage = {
     }.bind(this));
   },
   methods: {
+    hasResultParam: function(inputResult) {
+      console.log("hasResultParam running");
+      // console.log(inputResult);
+      var params = {
+        result: inputResult.result
+      };
+      console.log(params);
+      if (params.result) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     deleteTest: function(inputResult) {
       console.log("deleting the test");
       console.log(inputResult);
@@ -163,27 +176,28 @@ var UserPage = {
         console.log('rerouting page');
       });
     },
-    saveResult: function(inputResult) {
-      console.log("I'm saving the result ");
-      console.log(inputResult);
-      var params = {
-        date_completed: inputResult.date_completed,
-        result: inputResult.result,
-        user_id: inputResult.user_id,
-        vital_id: inputResult.vital_id,
-        shot_id: inputResult.shot_id,
-        exam_id: inputResult.exam_id,
-        lab_test_id: inputResult.lab_test_id
-      };
-      console.log(params);
-      axios.patch('/api/user_pages/:id', params).then(function(response) {
-        console.log('in update response for results');
-        console.log(response.data);
-      });
+    // saveDateCompleted funtion does the same thing as saveResult
+    // saveResult: function(inputResult) {
+    //   console.log("I'm saving the result ");
+    //   console.log(inputResult);
+    //   var params = {
+    //     date_completed: inputResult.date_completed,
+    //     result: inputResult.result,
+    //     user_id: inputResult.user_id,
+    //     vital_id: inputResult.vital_id,
+    //     shot_id: inputResult.shot_id,
+    //     exam_id: inputResult.exam_id,
+    //     lab_test_id: inputResult.lab_test_id
+    //   };
+    //   console.log(params);
+    //   axios.patch('/api/user_pages/:id', params).then(function(response) {
+    //     console.log('in update response for results');
+    //     console.log(response.data);
+    //   });
 
-    },
-    saveDateCompleted: function(inputResult) {
-      console.log("I'm saving the date completed ");
+    // },
+    saveResultAndDateCompleted: function(inputResult) {
+      console.log("I'm saving the date/result");
       console.log(inputResult);
 
       var params = {
