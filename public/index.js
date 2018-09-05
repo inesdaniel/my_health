@@ -87,6 +87,11 @@ var ResultHistoryPage = {
       console.log("in display results");
     }
   },
+  filters: {
+    moment: function(date) {
+      return moment(date).format('MM/DD/YY');
+    }
+  },
   computed: {}
 };
 
