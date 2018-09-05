@@ -13,7 +13,8 @@ class User < ApplicationRecord
   has_many :user_exams
   has_many :exams, through: :user_exams
   
-  has_many :meds
+  has_many :user_meds
+  has_many :medications, through: :user_meds
 
   has_many :results
 end

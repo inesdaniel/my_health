@@ -1,59 +1,95 @@
 /* global Vue, VueRouter, axios */
-// this is a nice to have, display old dates user entered
-// var UserShowPage = {
+// display old dates user entered
+var UserShowPage = {
 
-//   props: ['date_completed'],
-//   template: "#user-show-page",
-//   data: function() {
-//     return {
-//       message: "In the user show page",
-//       results: [],
-//       result: {date_completed: ""},
-//       dates: []
-//     };
-//   },
-//   created: function() {
-//     console.log('in created function for user page');
-//     axios.get("/api/user_pages").then(function(response) {
-//       console.log(response.data);
-//       var result = response.data;
-//       var dates = 
-//       result.forEach(function(element) {
-//         console.log(element.date_completed);
-//         var dates = element.date_completed;
-//       });
-//       console.log("set dates var");
-//       // console.log(dates);
-//       this.results = response.dates;
-//     }.bind(this));
-//     console.log("set results to dates");
+  template: "#user-show-page",
+  data: function() {
+    return {
+      message: "In the history page",
+      results: [],
+      result: {date_completed: ""},
+      result_history: []
 
-//   },
-//   methods: {
-//     saveDateCompleted: function(inputResult) {
-//       console.log("I'm saving the date completed ");
-//       console.log(inputResult);
+    };
+  },
+  created: function() {
+    console.log('in created function for user history page');
+    axios.get("/api/user_pages").then(function(response) {
+      console.log("the response data");
+      console.log(response.data);
+      this.results = response.data;
+    }.bind(this));
 
-//       var params = {
-//         date_completed: inputResult.date_completed,
-//         result: inputResult.result,
-//         user_id: inputResult.user_id,
-//         vital_id: inputResult.vital_id,
-//         shot_id: inputResult.shot_id,
-//         exam_id: inputResult.exam_id,
-//         lab_test_id: inputResult.lab_test_id
-//       };
+  },
+  methods: {
+    hasResultParam: function(inputResult) {
+      // console.log("hasResultParam running");
+      // console.log(inputResult);
+      var params = {
+        result: inputResult.result
+      };
+      // console.log(params);
+      if (params.result) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  computed: {}
+};
+var ResultHistoryPage = {
 
-//       console.log(params);
+  template: "#result-history-page",
+  data: function() {
+    return {
+      message: "In the history page",
+      results: [],
+     
 
-//       axios.patch('/api/user_pages/:id', params).then(function(response) {
-//         console.log('in update response...');
-//         console.log(response.data);
-//       });
-//     }
-//   },
-//   computed: {}
-// };
+    };
+  },
+  created: function() {
+    console.log('in created function for user history page');
+    axios.get("/api/user_pages").then(function(response) {
+      console.log("the response data");
+      console.log(response.data);
+      this.results = response.data;
+    }.bind(this));
+
+  },
+  methods: {
+    hasOldResults: function(inputResult) {
+      // var params = {
+      //   result: inputResult.result
+      // };
+      // // console.log(params);
+      // if (params.result_history) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+    },
+    hasResultParam: function(inputResult) {
+      // console.log("hasResultParam running");
+      // console.log(inputResult);
+      var params = {
+        result: inputResult.result
+      };
+      // console.log(params);
+      if (params.result) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    displayAllResults: function(inputResult) {
+      console.log("in display results");
+    }
+  },
+  computed: {}
+};
+
 var SetUpPage = {
   template: "#set-up-page",
   data: function() {
@@ -132,7 +168,7 @@ var UserPage = {
       message: "In the user page",
       results: [],
       result: {date_completed: ""},
-      old_dates_completed: []
+
     };
   },
   created: function() {
@@ -144,12 +180,12 @@ var UserPage = {
   },
   methods: {
     hasResultParam: function(inputResult) {
-      console.log("hasResultParam running");
+      // console.log("hasResultParam running");
       // console.log(inputResult);
       var params = {
         result: inputResult.result
       };
-      console.log(params);
+      // console.log(params);
       if (params.result) {
         return true;
       } else {
@@ -172,30 +208,10 @@ var UserPage = {
       console.log(params);
       axios.delete("/api/user_pages/:id", {data: params}).then(function(response) {
         console.log("in delete response");
-        router.push({ path: "/user_page"}); // doesn't actually refresh user page but get console logs
+        router.push("/user_page"); // doesn't actually refresh user page but get console logs
         console.log('rerouting page');
       });
     },
-    // saveDateCompleted funtion does the same thing as saveResult
-    // saveResult: function(inputResult) {
-    //   console.log("I'm saving the result ");
-    //   console.log(inputResult);
-    //   var params = {
-    //     date_completed: inputResult.date_completed,
-    //     result: inputResult.result,
-    //     user_id: inputResult.user_id,
-    //     vital_id: inputResult.vital_id,
-    //     shot_id: inputResult.shot_id,
-    //     exam_id: inputResult.exam_id,
-    //     lab_test_id: inputResult.lab_test_id
-    //   };
-    //   console.log(params);
-    //   axios.patch('/api/user_pages/:id', params).then(function(response) {
-    //     console.log('in update response for results');
-    //     console.log(response.data);
-    //   });
-
-    // },
     saveResultAndDateCompleted: function(inputResult) {
       console.log("I'm saving the date/result");
       console.log(inputResult);
@@ -209,12 +225,15 @@ var UserPage = {
         exam_id: inputResult.exam_id,
         lab_test_id: inputResult.lab_test_id
       };
-
       console.log(params);
       axios.patch('/api/user_pages/:id', params).then(function(response) {
         console.log('in update response for dates');
-        console.log(response.data);
+        console.log(response.data.result);
+        console.log(response.data.date_completed);
       });
+    },
+    resultHistory: function(inputResult) {
+      console.log("in result history");
     }
   },
   computed: {}
@@ -225,7 +244,7 @@ var LogoutPage = {
   created: function() {
     axios.defaults.headers.common["Authorization"] = undefined;
     localStorage.removeItem("jwt");
-    router.push("/");
+    router.push("/#/");
   }
 };
 
@@ -303,7 +322,6 @@ var HomePage = {
     return {
       message: "Welcome to Vue.js!",
       results: [],
-      // appName: "My Health"
     };
   },
   created: function() {
@@ -328,7 +346,11 @@ var router = new VueRouter({
     { path: "/logout", component: LogoutPage },
     { path: "/user_page", component: UserPage},
     { path: "/user_page/new", component: NewTestPage},
+    { path: "/user_page/:id", component: UserShowPage},
+    { path: "/user_page_history", component: ResultHistoryPage},
     { path: "/set_up_page", component: SetUpPage}
+    // { path: "/user_meds", component: UserMedsPage}
+
 
 
     // { path: "/user_pages/:id", component: UserShowPage}

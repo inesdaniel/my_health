@@ -34,7 +34,8 @@ class Api::ResultsController < ApplicationController
       @user_lab_test = UserLabTest.new(
         user_id: current_user.id,
         lab_test_id: params[:lab_test_id],
-        date_completed: "01/01/1900"
+        date_completed: "01/01/1900",
+        result: 0.0
       )
       @user_lab_test.save
     elsif (params.has_key?(:shot_id))
@@ -49,6 +50,7 @@ class Api::ResultsController < ApplicationController
         user_id: current_user.id,
         vital_id: params[:vital_id],
         date_completed: "01/01/1900",
+        result: 0
       )
       @user_vital.save
     end

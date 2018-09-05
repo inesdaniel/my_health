@@ -29,29 +29,39 @@ class Api::UserPagesController < ApplicationController
     render json: @result.as_json
   end
 
-  def show #nice to have
-    # need to display old dates here(when click name link)
-    # if (params.has_key? (:vital_id)) 
+  def show #nice to have need to display old dates here(when click name link)
+    # @dates = []
+    # if (params.has_key?(:shot_id))
+    #   user_shot = UserShot.find_by(user_id: params[:user_id], shot_id: params[:shot_id])
+    #   @dates << user_shot.date_completed
+    #   @dates.save      
+    # elsif (params.has_key? (:vital_id)) 
     #   user_vital = UserVital.find_by(user_id: params[:user_id], vital_id: params[:vital_id])
     #   # old_dates_completed << user_vital.vital_id
     #   @dates = user_vital.vital_name + user_vital.date_completed
-    # elsif (params.has_key?(:shot_id))
-    #   user_shot = UserShot.find_by(user_id: params[:user_id], shot_id: params[:shot_id])
-      
+    #   @dates.save
     # elsif (params.has_key?(:exam_id))
     #   user_exam = UserExam.find_by(user_id: params[:user_id], exam_id: params[:exam_id])
-      
+    #   @dates = user_exam.exam_name + user_exam.date_completed
+    #   @dates.save
     # elsif (params.has_key?(:lab_test_id))
     #   user_lab_test = UserLabTest.find_by(user_id: params[:user_id], lab_test_id: params[:lab_test_id])         
      
     # end
 
-    # render json: user_shot.as_json || user_vital.as_json || user_exam.as_json || user_lab_test.as_json
+    # render "show.json.jbuilder"
   end
 
   def update
+    @results = []
     if (params.has_key? (:vital_id)) 
       user_vital = UserVital.find_by(user_id: params[:user_id], vital_id: params[:vital_id])
+
+      p "*" * 50
+      @results << user_vital.result
+      p @results
+      user_vital.result_history << user_vital.result
+      user_vital.date_history << user_vital.date_completed.strftime("%m/%d/%Y")
 
       result = params[:result]
       user_vital.result = result || user_vital.result

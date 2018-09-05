@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_154126) do
+ActiveRecord::Schema.define(version: 2018_09_04_220454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 2018_08_29_154126) do
     t.integer "lab_test_id"
   end
 
+  create_table "medications", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "results", force: :cascade do |t|
     t.integer "user_id"
     t.string "test_name"
@@ -38,6 +44,8 @@ ActiveRecord::Schema.define(version: 2018_08_29_154126) do
     t.datetime "date_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "result_history", default: [], array: true
+    t.datetime "date_history", default: [], array: true
   end
 
   create_table "shots", force: :cascade do |t|
@@ -53,6 +61,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_154126) do
     t.datetime "date_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "date_history", default: [], array: true
   end
 
   create_table "user_lab_tests", force: :cascade do |t|
@@ -60,6 +69,19 @@ ActiveRecord::Schema.define(version: 2018_08_29_154126) do
     t.integer "lab_test_id"
     t.datetime "date_completed"
     t.decimal "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "result_history", default: [], array: true
+    t.datetime "date_history", default: [], array: true
+  end
+
+  create_table "user_medications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "medication_id"
+    t.string "name"
+    t.decimal "dose"
+    t.string "route"
+    t.string "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,6 +92,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_154126) do
     t.datetime "date_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "date_history", default: [], array: true
   end
 
   create_table "user_vitals", force: :cascade do |t|
@@ -79,6 +102,8 @@ ActiveRecord::Schema.define(version: 2018_08_29_154126) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "date_completed"
+    t.text "result_history", default: [], array: true
+    t.datetime "date_history", default: [], array: true
   end
 
   create_table "users", force: :cascade do |t|
