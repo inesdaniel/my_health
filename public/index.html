@@ -202,7 +202,7 @@
                             <strong>Result:</strong> 
                             <input v-model="result.result"> 
                             <p v-if="Array.isArray(result.result_history)">
-                                <h6>Old Results: </h6>
+                                <h6>Previous Results: </h6>
                                 <p v-for="element in result.result_history">
                                     {{element}}
                                 </p>
@@ -210,7 +210,7 @@
                         </div>
                         <div class="date_history">
                             <p v-if="Array.isArray(result.date_history)">
-                                <h6>Old dates:</h6>
+                                <h6>Previous Dates:</h6>
                                 <p v-for="date in result.date_history" >
                                     {{date| moment}}
                                 </p>
@@ -332,10 +332,10 @@
     <div class="space-70"></div>
         <div class="container portfolio-details">
             <div class="row">
-                <div class="col-md-4" v-for="result in results">
+                <div class="col-md-4" v-for="result in results" style="overflow: scroll; height: 300px;">
                     <div class="portfolio-side-bar">
                         <p>
-                            <strong><a v-bind:href="'/#/user_page/' + result.shot_id">{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }} {{ result.test_name }}</a></strong> 
+                            <strong style="color: #234CD4;">{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }} {{ result.test_name }}</strong> 
                         </p>
                         <p class="result" v-if="hasResultParam(result)">
                             <strong>Result:</strong> 
