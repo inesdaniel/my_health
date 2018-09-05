@@ -10,10 +10,10 @@
         <link href="assets/css/plugins/plugins.css" rel="stylesheet">
         <!--Custom css-->
         <link href="assets/css/style.css" rel="stylesheet">
+        <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.js"></script>
-        <script src="https://momentjs.com/downloads/moment.js"></script>
         <script src="index.js" defer></script>
     </head>
     <body class="boxed">
@@ -110,46 +110,6 @@
     </body>
 </html>
 
-<template id="user-show-page">
-  <div class="vue-component">
-    <section id="content-region-3" class="padding-40 page-tree-bg">
-        <div class="container">
-            <h3 class="page-tree-text">
-                In the user show Page 
-            </h3>
-        </div>
-    </section><!--page-tree end here-->
-    <div class="space-70"></div>
-        <div class="container portfolio-details">
-            <div class="row">
-                <div class="col-md-4" v-for="result in results">
-                    <div class="portfolio-side-bar">
-                        <p>
-                            <strong>{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }} {{ result.test_name }}</strong> 
-                        </p>
-                        <p class="result" v-if="hasResultParam(result)">
-                            <strong>Result:</strong> 
-                                <input v-model="result.result" placeholder="enter result.."> 
-                        </p>
-                        
-                        <p>
-                            <strong>Date Completed:</strong> {{ result.date_completed }}
-                        </p>
-                        <br>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="space-30"></div>
-        <div class="text-center">
-            <a class="theme-btn-color-outline btn-radius btn" href="/#/user_page">Got to user page</a> 
-        </div>
-        <div class="space-30"></div>
-
-  </div>
-</template>
-
 <template id="result-history-page">
   <div class="vue-component">
     <section id="content-region-3" class="padding-40 page-tree-bg">
@@ -203,16 +163,16 @@
                             <input v-model="result.result"> 
                             <p v-if="Array.isArray(result.result_history)">
                                 <h6>Previous Results: </h6>
-                                <p v-for="element in result.result_history">
-                                    {{element}}
+                                <p  v-if="Array.isArray(result.date_history)" v-for="date, i in result.date_history">
+                                    {{result.result_history[i]}} -- {{date | moment }} 
                                 </p>
                             </p>
                         </div>
                         <div class="date_history">
                             <p v-if="Array.isArray(result.date_history)">
                                 <h6>Previous Dates:</h6>
-                                <p v-for="date in result.date_history" >
-                                    {{date| moment}}
+                                <p v-for="date in result.date_history">
+                                    {{date | moment }}
                                 </p>
                             </p>
                         </div>
@@ -297,7 +257,7 @@
     <section id="content-region-3" class="padding-40 page-tree-bg">
         <div class="container">
             <h3 class="page-tree-text">
-                In the User Page 
+                Home 
             </h3>
         </div>
     </section><!--page-tree end here-->

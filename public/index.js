@@ -1,45 +1,5 @@
 /* global Vue, VueRouter, axios */
 // display old dates user entered
-var UserShowPage = {
-
-  template: "#user-show-page",
-  data: function() {
-    return {
-      message: "In the history page",
-      results: [],
-      result: {date_completed: ""},
-      result_history: [],
-      date_history: []
-
-    };
-  },
-  created: function() {
-    console.log('in created function for user history page');
-    axios.get("/api/user_pages").then(function(response) {
-      console.log("the response data");
-      console.log(response.data);
-      this.results = response.data;
-    }.bind(this));
-
-  },
-  methods: {
-    hasResultParam: function(inputResult) {
-      // console.log("hasResultParam running");
-      // console.log(inputResult);
-      var params = {
-        result: inputResult.result
-      };
-      // console.log(params);
-      if (params.result) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  },
-  computed: {}
-};
-
 var ResultHistoryPage = {
 
   template: "#result-history-page",
@@ -47,6 +7,7 @@ var ResultHistoryPage = {
     return {
       message: "In the history page",
       results: [],
+      formatDate: ""
     };
   },
   created: function() {
@@ -89,10 +50,12 @@ var ResultHistoryPage = {
   },
   filters: {
     moment: function(date) {
-      return moment(date).format('MM/DD/YY');
+      return moment(date).format("L");
     }
   },
-  computed: {}
+  computed: {
+    
+  }
 };
 
 var SetUpPage = {
@@ -249,7 +212,7 @@ var LogoutPage = {
   created: function() {
     axios.defaults.headers.common["Authorization"] = undefined;
     localStorage.removeItem("jwt");
-    router.push("/#/");
+    router.push("/");
   }
 };
 
@@ -351,16 +314,8 @@ var router = new VueRouter({
     { path: "/logout", component: LogoutPage },
     { path: "/user_page", component: UserPage},
     { path: "/user_page/new", component: NewTestPage},
-    { path: "/user_page/:id", component: UserShowPage},
     { path: "/user_page_history", component: ResultHistoryPage},
     { path: "/set_up_page", component: SetUpPage}
-    // { path: "/user_meds", component: UserMedsPage}
-
-
-
-    // { path: "/user_pages/:id", component: UserShowPage}
-
-
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };
