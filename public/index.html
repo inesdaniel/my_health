@@ -227,10 +227,12 @@
             </div>
         </div>
     </nav><!--nav end-->
-    <p>Click on items to add to your home page:</p>
+    <div>
+        <p>Click on items to add to your home page: <span style="float: right;">Search for test here: <input v-model="testFilter"></span></p>
+    </div>
         <div class="container portfolio-details">
             <div class="row">
-                <div class="col-md-4" v-for="result in results">
+                <div class="col-md-4" v-for="result in filterBy(results, testFilter, 'name')">
                     <div class="portfolio-side-bar">
                         <p>
                             <strong>{{ result.name }}</strong> 

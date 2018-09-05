@@ -62,8 +62,8 @@ var SetUpPage = {
   template: "#set-up-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!",
       results: [],
+      testFilter: ""
     };
   },
   created: function() {
