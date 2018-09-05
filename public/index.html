@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +11,7 @@
         <link href="assets/css/style.css" rel="stylesheet">
         <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue2-filters/dist/vue2-filters.js"></script>
         <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.js"></script>
         <script src="index.js" defer></script>
@@ -163,7 +163,8 @@
                             <input v-model="result.result"> 
                             <p v-if="Array.isArray(result.result_history)">
                                 <h6>Previous Results: </h6>
-                                <p  v-if="Array.isArray(result.date_history)" v-for="date, i in result.date_history">
+                                <!-- <p  v-if="Array.isArray(result.date_history)" v-for="date, i in result.date_history"> -->
+                                <p  v-if="Array.isArray(result.date_history)" v-for="date, i in orderBy(result.date_history, 'date_completed', -1)">
                                     {{result.result_history[i]}} -- {{date | moment }} 
                                 </p>
                             </p>
@@ -171,7 +172,7 @@
                         <div class="date_history">
                             <p v-if="Array.isArray(result.date_history)">
                                 <h6>Previous Dates:</h6>
-                                <p v-for="date in result.date_history">
+                                <p v-for="date in orderBy(result.date_history, 'date_completed', -1)">
                                     {{date | moment }}
                                 </p>
                             </p>
