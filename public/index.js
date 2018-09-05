@@ -8,7 +8,8 @@ var UserShowPage = {
       message: "In the history page",
       results: [],
       result: {date_completed: ""},
-      result_history: []
+      result_history: [],
+      date_history: []
 
     };
   },
@@ -38,6 +39,7 @@ var UserShowPage = {
   },
   computed: {}
 };
+
 var ResultHistoryPage = {
 
   template: "#result-history-page",
@@ -45,8 +47,6 @@ var ResultHistoryPage = {
     return {
       message: "In the history page",
       results: [],
-     
-
     };
   },
   created: function() {
@@ -59,16 +59,16 @@ var ResultHistoryPage = {
 
   },
   methods: {
-    hasOldResults: function(inputResult) {
-      // var params = {
-      //   result: inputResult.result
-      // };
-      // // console.log(params);
-      // if (params.result_history) {
-      //   return true;
-      // } else {
-      //   return false;
-      // }
+    hasDateHistory: function(inputResult) {
+      var params = {
+        result: inputResult.date_history
+      };
+      // console.log(params);
+      if (params.result === false) {
+        return false;
+      } else {
+        return true;
+      }
     },
     hasResultParam: function(inputResult) {
       // console.log("hasResultParam running");

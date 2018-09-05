@@ -188,28 +188,37 @@
     <div class="space-70"></div>
         <div class="container portfolio-details">
             <div class="row">
-                <div class="col-md-4" v-for="result in results">
+                <div class="col-md-4" v-for="result in results" style="overflow: scroll; height: 300px;">
                     <div class="portfolio-side-bar">
-                        <p>
+                        <h6>
                             <strong>{{ result.shot_name }}{{ result.vital_name }} {{ result.exam_name}} {{ result.lab_test_name }} {{ result.test_name }}</strong> 
+                        </h6>
+                        <p>
+                            <strong>Date Completed:</strong> {{result.date_completed}}
                         </p>
                         <div class="result" v-if="hasResultParam(result)"> 
                             <strong>Result:</strong> 
                             <input v-model="result.result"> 
                             <p v-if="Array.isArray(result.result_history)">
-                                <h6 v-for="element in result.result_history">
+                                <h6>Old Results: </h6>
+                                <p v-for="element in result.result_history">
                                     {{element}}
-                                </h6>
+                                </p>
                             </p>
                         </div>
-                        
-                        <p>
-                            <strong>Date Completed:</strong> {{result.date_completed}}
-                        </p>
-                        <p>{{result.date_history}}</p>
-                        <hr>
-                       
+                        <div class="date_history">
+                            <p v-if="Array.isArray(result.date_history)">
+                                <h6>Old dates:</h6>
+                                <p v-for="element in result.date_history">
+                                    {{element}}
+                                </p>
+                            </p>
+                        </div>
                     </div>
+
+
+
+
                 </div>
             </div>
         </div>

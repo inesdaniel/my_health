@@ -2,6 +2,7 @@
 #   json.name result.name
 
 # end
+require 'date'
 
 json.array! @user_shots.each do |user_shot|
   json.user_id user_shot.user_id
@@ -19,6 +20,7 @@ json.array! @user_vitals.each do |user_vital|
   json.result user_vital.result
   json.result_history user_vital.result_history
   json.date_history user_vital.date_history
+
 end
 
 json.array! @user_exams.each do |user_exam|

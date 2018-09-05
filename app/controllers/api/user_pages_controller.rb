@@ -57,11 +57,8 @@ class Api::UserPagesController < ApplicationController
     if (params.has_key? (:vital_id)) 
       user_vital = UserVital.find_by(user_id: params[:user_id], vital_id: params[:vital_id])
 
-      p "*" * 50
-      @results << user_vital.result
-      p @results
       user_vital.result_history << user_vital.result
-      user_vital.date_history << user_vital.date_completed.strftime("%m/%d/%Y")
+      user_vital.date_history << user_vital.date_completed
 
       result = params[:result]
       user_vital.result = result || user_vital.result
@@ -72,18 +69,35 @@ class Api::UserPagesController < ApplicationController
       user_vital.save
     elsif (params.has_key?(:shot_id))
       user_shot = UserShot.find_by(user_id: params[:user_id], shot_id: params[:shot_id])
+      p "*" * 50
+      p user_shot.date_completed
+      user_shot.date_history << user_shot.date_completed
+      p user_shot.date_history
+      p "*" * 50
+
       date_string = params[:date_completed]
       datetime = DateTime.strptime(date_string, "%m/%d/%Y")
       user_shot.date_completed = datetime || user_shot.date_completed
       user_shot.save
     elsif (params.has_key?(:exam_id))
       user_exam = UserExam.find_by(user_id: params[:user_id], exam_id: params[:exam_id])
+
+      p "*" * 50
+      p user_exam.date_completed
+      p user_exam.date_completed.strftime("%m/%d/%Y")
+      user_exam.date_history << user_exam.date_completed
+      p user_exam.date_history
+      p "*" * 50
+
       date_string = params[:date_completed]
       datetime = DateTime.strptime(date_string, "%m/%d/%Y")
       user_exam.date_completed = datetime || user_exam.date_completed
       user_exam.save 
     elsif (params.has_key?(:lab_test_id))
       user_lab_test = UserLabTest.find_by(user_id: params[:user_id], lab_test_id: params[:lab_test_id])    
+
+      user_lab_test.result_history << user_lab_test.result
+      user_lab_test.date_history << user_lab_test.date_completed
 
       result = params[:result]
       user_lab_test.result = result || user_lab_test.result
@@ -97,6 +111,9 @@ class Api::UserPagesController < ApplicationController
       id = results.ids
       p id 
       user_result = Result.find_by(user_id: params[:user_id], id: id)   
+
+      user_result.result_history << user_result.result
+      user_result.date_history << user_result.date_completed
       
       result = params[:result]
       user_result.result = result 
